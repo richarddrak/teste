@@ -1,0 +1,81 @@
+   <html>
+       <head>
+            <title>Loja virtual </title>
+        <meta charset= "utf8" />
+       </head>
+ 
+       <body>
+
+            <div id= "produtos">
+                
+            </div><!---produtos--->>
+
+            <div id="carrimho">
+
+            </div><!---carrinho--->>
+
+            <script>
+                const items = [
+                    {
+                        id: 0,
+                        nome: 'camiseta',
+                        img: 'camiseta.Jpg',
+                        quantidade: 0
+                        
+                    },
+                    {
+                        id: 1,
+                        nome: 'calça',
+                        img: 'calça.Jpg',
+                        quantidade: 0
+                    },
+                    {
+                        id: 2,
+                        nome: 'sapato',
+                        img: 'sapato.Jpg',
+                        quantidade: 0
+                    },
+                ]
+
+
+                inicializarLoja = () => {
+                        var containerprodutos = document.getElementById('produtos');
+                        items.map((val)=>{
+                            containerprodutos.innerHTML+= `
+                            
+                            <div class="ptodutos-single">
+                                <img src="`+val.img+`"style="height: 300px;"  />
+                                <p>`+val.nome+`</p>
+                                <a key="+val.id+" href="#">Adicionar ao carrimho!<a/>
+                            
+                            `;
+                        })
+                }
+
+                inicializarLoja();
+
+
+
+                atualizarCarrinho = () => {
+                    console.log(items);
+                }
+
+
+                var links = document.getElementsByTagName('a');
+                    
+                for (var i = 0; i < links.length; i++){
+                    links[i].addEventoLinster("click",function(){
+                        let key = this.getAttribute('key');
+                        items[key].quantidade++;
+                        atualizarCarrinho();
+                        return false;
+                    })
+                }
+
+
+
+            </script>
+
+       </body>
+
+   </html>
